@@ -1,0 +1,189 @@
+#include "snake.h"
+
+//extern int ROWS;
+//extern int COLS;
+
+snake::snake()
+{
+	link l;
+	body.push_back(l);
+        tail^l;
+	length=0;
+}
+
+snake::snake(int x, int y)
+{
+	link l(x,y);
+	body.push_back(l);
+        tail^l;
+	length=0;
+}
+
+link snake::get_head()
+{
+	return body[0];
+}
+
+bool snake::isAlive()
+{
+	bool alive=true;
+	if (body[0].getX()>ROWS || body[0].getX()<0 || body[0].getY()>COLS || body[0].getX()<0)
+	{
+		alive=false;
+	}
+
+	for (int i=1; i<=length; i++)
+	{
+		
+		if (body[0]==body[i])
+		{
+			alive=false;
+		}
+	}
+
+	return alive;
+}
+
+int snake::get_length()
+{
+	return length;
+}
+
+void snake::move(dir direction)
+{
+	tail^body[length];
+	switch (direction)
+	{
+		case UP: {body[length].move(body[0].getX(), body[0].getY()+1);} break;
+		case DOWN: {body[length].move(body[0].getX(), body[0].getY()-1);} break;
+		case RIGHT: {body[length].move(body[0].getX()+1, body[0].getY());} break;
+		case LEFT: {body[length].move(body[0].getX()-1, body[0].getY());} break;
+	}
+}
+
+void snake::grow()
+{
+	body.push_back(tail);
+        length++;
+}
+
+bool snake::existsOn(int x, int y)
+{
+        for (int k=0; k<=length; k++)
+        {
+                if(body[k].getX()==x && body[k].getY()==y)
+                {
+                        return true;
+                }
+        }       
+        return false;
+}
+
+/*##############################################################################
+###############################################################################*/
+
+void snake::autoMove()
+{
+        if (fruitAmount==0)
+        {
+                //snake is in BOTTOM MIDDLE side of board
+                if (body[0].getX()==COLS/2 && body[0].getY()<ROWS/2)
+                {
+                        this->move(UP);
+                        return;
+                }
+                //snake is in TOP MIDDLE side of board
+                if (body[0].getX()==COLS/2 && body[0].getY()>ROWS/2)
+                {
+                        this->move(DOWN);
+                        return;
+                }
+                //snake is in MIDDLE LEFT side of board
+                if (body[0].getX()<COLS/2 && body[0].getY()==ROWS/2)
+                {
+                        this->move(RIGHT);
+                        return;
+                }
+                //snake is in MIDDLE RIGHT side of board
+                if (body[0].getX()>COLS/2 && body[0].getY()==ROWS/2)
+                {
+                        this->move(LEFT);
+                        return;
+                }
+                //snake is in BOTTOM LEFT side of board
+                if (body[0].getX()<COLS/2 && body[0].getY()<ROWS/2)
+                {
+                        //snake is closer to the LEFT then to the BOTTOM
+                        if(body[0].getX()-0<body[0].getY()-0)
+                        {
+                                this->move(RIGHT);
+                                return;
+                        }
+                        else
+                        {
+                                this->move(UP);
+                                return;
+                        }
+                }
+                //snake is in BOTTOM RIGHT side of board
+                if (body[0].getX()>COLS/2 && body[0].getY()<ROWS/2)
+                {
+                        //snake is closer to the RIGHT then to the BOTTOM
+                        if(COLS-body[0].getX()<body[0].getY()-0)
+                        {
+                                this->move(LEFT);
+                                return;
+                        }
+                        else
+                        {
+                                this->move(UP);
+                                return;
+                        }
+                }
+                //snake is in TOP LEFT side of board
+                if (body[0].getX()<COLS/2 && body[0].getY()>ROWS/2)
+                {
+                        //snake is closer to the LEFT then to the TOP
+                        if(body[0].getX()-0<ROWS-body[0].getY())
+                        {
+                                this->move(RIGHT);
+                                return;
+                        }
+                        else
+                        {
+                                this->move(DOWN);
+                                return;
+                        }
+                }
+                //snake is in TOP RIGHT side of board
+                if (body[0].getX()>COLS/2 && body[0].getY()>ROWS/2)
+                {
+                        //snake is closer to the RIGHT then to the TOP
+                        if(COLS-body[0].getX()<ROWS-body[0].getY())
+                        {
+                                this->move(LEFT);
+                                return;
+                        }
+                        else
+                        {
+                                this->move(DOWN);
+                                return;
+                        }
+                }
+                //snake is in MIDDLE of board
+                if (body[0].getX()==COLS/2 && body[0].getY()==ROWS/2)
+                {
+                        
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
+

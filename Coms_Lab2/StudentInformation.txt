@@ -1,0 +1,5 @@
+Student Name: Or Hanoch
+Students Number: 1501858
+
+Comments:
+In the base 10 question I solved it in two different ways (that are essentially the same) but I didn't want to erase one of them so I put it in // comments. I hope this isn't too much of a trouble.

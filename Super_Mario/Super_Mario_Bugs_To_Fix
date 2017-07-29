@@ -1,0 +1,30 @@
+Bugs:
+
+Mushroom goes through bricks
+Boss Level shadow on shots
+3 goomba bug
+long presses on keys - doesn't draw fast enough
+
+
+
+
+
+
+
+Part of blockHit  in AAAAAAAAAA section (not needed anymore)
+
+
+//							surface=true;
+							/*for(l=0; l<5; l++)
+						{
+								if ((BBlock[1][0][l]==vPlayerPrev || BBlock[1][1][l]==vPlayerPrev))
+								{
+									hPlayer[0]=hPlayerPrev[0];
+									hPlayer[1]=hPlayerPrev[1];
+									break;
+								}
+							}
+							if hPlayerPrev[0]!=hPlayer[0])
+							{
+								vPlayer=vPlayerPrev;
+							}*/

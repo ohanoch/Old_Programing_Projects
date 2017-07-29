@@ -1,0 +1,7 @@
+All files are ready to be compiled and work. They can be compiled using g++ command via a linux terminal (i.e g++ -Wall basen_to_base10.cpp -o basen_to_base10.o). then you can run them from the linux terminal using ./ (i.e. ,.basen_to_base10.o)
+
+In basen_to_base10 you need to enter a 4 digit integer as your first input and a number between 1 and 10 representing the base you wrote that number in. Notice that non of the digits in the number you entered should have a greater or equal value to your base (because then it wouldn't be in that base). You should receive the number in base 10 as output.
+
+In Grading symbol you need to enter a number between 1 and 100 as input. The output would be that number as represented by the grading symbol table provided to us.
+
+In vending machine you need to enter an integer between 1 to 5 in order to choose a drink. You will not receive an output unless you enter a number not between 1 and 5, in which case you will get an error message.

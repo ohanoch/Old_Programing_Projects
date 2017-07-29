@@ -1,0 +1,55 @@
+#include "snake.h"
+
+snake::snake()
+{
+	link l;
+	body.push_back(l);
+	length=0;
+}
+
+link snake::get_head()
+{
+	return body[0];
+}
+
+bool snake::isAlive()
+{
+	bool alive=true;
+	if (body[0].getX()==COLS || body[0].getX()<0 || body[0].getY()==ROWS || body[0].getX()<0)
+	{
+		alive=false;
+	}
+
+	for (int i=1; i<=length; i++)
+	{
+		
+		if (body[0]==body[i])
+		{
+			alive=false;
+		}
+	}
+
+	return alive;
+}
+
+int snake::get_length()
+{
+	return length;
+}
+
+void snake::move(dir direction)
+{
+	tail=body[length];
+	switch (direction)
+	{
+		case UP: {body[length].move(body[0].getX(), body[0].getY()+1);} break;
+		case DOWN: {body[length].move(body[0].getX(), body[0].getY()-1);} break;
+		case RIGHT: {body[length].move(body[0].getX()+1, body[0].getY());} break;
+		case LEFT: {body[length].move(body[0].getX()-1, body[0].getY());} break;
+	}
+}
+
+void snake::grow()
+{
+	body.push_back(tail);
+}
